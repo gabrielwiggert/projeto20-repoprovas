@@ -53,6 +53,8 @@ model TeacherDiscipline {
   disciplineId      Int
 
   tests           Test[]
+
+  @@map("teachersDisciplines")
 }
 
 model Category {
