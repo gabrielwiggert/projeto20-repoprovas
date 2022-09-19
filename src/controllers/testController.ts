@@ -7,8 +7,20 @@ async function addTest(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function viewTestsByDiscipline(req: Request, res: Response) {
+  const result = await testService.getTestsByDiscipline();
+  res.send(result);
+}
+
+async function viewTestsByTeacher(req: Request, res: Response) {
+  const result = await testService.getTestsByTeacher();
+  res.send(result);
+}
+
 const testController = {
-  addTest
+  addTest,
+  viewTestsByDiscipline,
+  viewTestsByTeacher
 }
 
 export default testController;

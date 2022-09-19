@@ -39,3 +39,11 @@ export async function findTeacherDiscipline(teacher: number, discipline: number)
     }
   });
 }
+
+export async function getTestsByDiscipline() {
+  return await prisma.test.findMany();
+}
+
+export async function getTestsByTeacher() {
+  return await prisma.test.findMany();
+}

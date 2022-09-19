@@ -53,6 +53,30 @@ async function main() {
       ],
       skipDuplicates: true,
     });
+
+    await prisma.test.createMany({
+      data: [
+        {
+          name: "aaa",
+          pdfUrl: "https://google.com",
+          categoryId: 1,
+          teacherDisciplineId: 1,
+        },
+        {
+          name: "bbb",
+          pdfUrl: "https://google.com",
+          categoryId: 2,
+          teacherDisciplineId: 2,
+        },
+        {
+          name: "ccc",
+          pdfUrl: "https://google.com",
+          categoryId: 3,
+          teacherDisciplineId: 3,
+        }
+      ],
+      skipDuplicates: true,
+    });
   }
 
 main().catch((e) => {

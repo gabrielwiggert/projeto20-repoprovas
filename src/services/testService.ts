@@ -41,8 +41,18 @@ async function addTest(userTest: UserTest) {
   await testRepository.addTest(test);
 }
 
+async function getTestsByDiscipline() {
+  return await testRepository.getTestsByDiscipline();
+}
+
+async function getTestsByTeacher() {
+  return await testRepository.getTestsByTeacher();
+}
+
 const userService = {
-  addTest
+  addTest,
+  getTestsByDiscipline,
+  getTestsByTeacher
 }
 
 export default userService;

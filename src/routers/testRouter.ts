@@ -8,5 +8,7 @@ const testRouter = Router();
 
 testRouter.use(ensureAuthenticatedMiddleware);
 testRouter.post("/add-test", validateSchemaMiddleware(testSchema), testController.addTest);
+testRouter.get("/tests-discipline", testController.viewTestsByDiscipline);
+testRouter.get("/tests-teacher", testController.viewTestsByTeacher);
 
 export default testRouter;
