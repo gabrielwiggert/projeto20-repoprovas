@@ -5,6 +5,7 @@ import app from "../src/app";
 import { prisma } from "../src/database.js";
 import userFactory from "./factories/userFactory.js";
 import testFactory from "./factories/testFactory.js";
+import invalidTestFactory from "./factories/invalidTestFactory.js";
 
 beforeEach(async () => {
   await prisma.$executeRaw`TRUNCATE TABLE tests`;
@@ -42,5 +43,16 @@ describe('Tests POST /add-test ', () => {
     const result = await supertest(app).post('/add-test').set("Authorization", `Bearer 123`).send(test);
 
     expect(result.status).toBe(401);
+  });
+
+  it('Should return status code 404, if tried to add a test with an invalid category/teacher/discipline', async () => {
+    const user = await userFactory();
+    await supertest(app).post('/sign-up').send(user);
+    const resultUser = await supertest(app).post('/signin').send(user);
+
+    const test = await invalidTestFactory();
+    const result = await supertest(app).post('/add-test').set("Authorization", `Bearer ${resultUser.body.token}`).send(test);
+
+    expect(result.status).toBe(404);
   });
 });
