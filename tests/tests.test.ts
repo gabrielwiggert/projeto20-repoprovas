@@ -56,3 +56,27 @@ describe('Tests POST /add-test ', () => {
     expect(result.status).toBe(404);
   });
 });
+
+describe('Tests GET /tests-discipline ', () => {
+  it('Should return all tests', async () => {
+    const user = await userFactory();
+    await supertest(app).post('/sign-up').send(user);
+    const resultUser = await supertest(app).post('/signin').send(user);
+
+    const result = await supertest(app).get('/tests-discipline').set("Authorization", `Bearer ${resultUser.body.token}`);
+
+    expect(result.body).toBeInstanceOf(Array);
+  });
+});
+
+describe('Tests GET /tests-teacher ', () => {
+  it('Should return all tests', async () => {
+    const user = await userFactory();
+    await supertest(app).post('/sign-up').send(user);
+    const resultUser = await supertest(app).post('/signin').send(user);
+
+    const result = await supertest(app).get('/tests-teacher').set("Authorization", `Bearer ${resultUser.body.token}`);
+
+    expect(result.body).toBeInstanceOf(Array);
+  });
+});
