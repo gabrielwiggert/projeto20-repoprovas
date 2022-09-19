@@ -18,7 +18,3 @@ export async function insertUser(user: CreateUserData) {
     data: user
   });
 }
-
-export default {
-  findById
-};

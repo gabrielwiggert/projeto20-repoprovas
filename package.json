@@ -5,10 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
     "start": "node src/server.ts",
     "dev": "nodemon src/server.ts",
-    "test": "npm run prisma-test && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i"
+    "test": "jest --no-cache"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
