@@ -2,12 +2,22 @@ import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import userRepository from "../repositories/userRepository.js";
+import * as userRepository from "../repositories/userRepository.js";
 import * as errors from "../utils/errors.js";
-
 dotenv.config();
 
-async function signUp(user) {
+export type CreateUserData = Omit<User, 'id'>;
+
+async function signUp(user: CreateUserData) {
+  const existingUser = await userRepository.findUserByEmail(user.email);
+
+  if (existingUser) {
+    throw errors.conflictError();
+  }
+
+  const SALT = 10;
+  const hashedPassword = bcrypt.hashSync(user.password, SALT);
+  await userRepository.insertUser({ ...user, password: hashedPassword });
 }
 
 const userService = {
