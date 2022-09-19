@@ -5,9 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test prisma db seed && dotenv -e .env.test jest",
     "start": "node src/server.ts",
     "dev": "nodemon src/server.ts",
-    "test": "jest --no-cache"
+    "test_original_db": "jest --no-cache"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
