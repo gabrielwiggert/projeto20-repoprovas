@@ -24,7 +24,7 @@ async function main() {
   
     await prisma.teacher.createMany({
       data: [
-        { name: "Diego M. Pinho" },
+        { name: "Diego Pinho" },
         { name: "Bruna Hamori" }
       ],
       skipDuplicates: true,

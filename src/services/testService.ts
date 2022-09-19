@@ -6,7 +6,7 @@ dotenv.config();
 
 export type addTestData = Omit<Test, 'id'>;
 
-interface UserTest {
+export interface UserTest {
   name: string;
   pdfUrl: string;
   category: string;
@@ -25,7 +25,7 @@ async function addTest(userTest: UserTest) {
   if (!resultTeacher) {throw errors.notFoundError(); }
 
   const resultTeacherDiscipline = await testRepository.findTeacherDiscipline(Number(resultTeacher.id), Number(resultDiscipline.id));
-  if (!resultTeacherDiscipline) {throw errors.notFoundError(); }
+  if (!resultTeacherDiscipline[0]) {throw errors.notFoundError(); }
 
   let test: addTestData = {
     name:"",
