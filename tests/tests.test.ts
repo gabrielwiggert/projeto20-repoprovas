@@ -29,4 +29,18 @@ describe('Tests POST /add-test ', () => {
 
     expect(result.status).toBe(201);
   });
+
+  it('Should return status code 401, if a token is not provided', async () => {
+    const test = await testFactory();
+    const result = await supertest(app).post('/add-test').send(test);
+
+    expect(result.status).toBe(401);
+  });
+
+  it('Should return status code 401, if the provided token is not valid', async () => {
+    const test = await testFactory();
+    const result = await supertest(app).post('/add-test').set("Authorization", `Bearer 123`).send(test);
+
+    expect(result.status).toBe(401);
+  });
 });
