@@ -1,7 +1,7 @@
 import { prisma } from "../database.js";
 import { CreateUserData } from './../services/userService';
 
-async function findById(id: number) {
+export async function findById(id: number) {
   return prisma.user.findUnique({ where: { id }});
 }
 

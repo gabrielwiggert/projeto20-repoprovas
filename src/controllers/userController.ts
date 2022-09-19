@@ -7,8 +7,15 @@ async function signUp(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+export async function signIn(req: Request, res: Response) {
+  const user = req.body;
+  const token = await userService.login(user);
+  res.send({ token });
+}
+
 const userController = {
-  signUp
+  signUp,
+  signIn
 }
 
 export default userController;
