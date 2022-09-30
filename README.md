@@ -7,3 +7,5 @@ commands to be run on the project's root:
 (4) "npm run test" (to run tests on test database) OR "npm run test_original_db" (to run tests on the main database)
 
 manual tests can be run through the Thunder Client collection of tests
+
+-> 'sign-in' returns an object containing a token that must be used in the headers of authenticated routes requests - POST /add-test, GET /tests-discipline and GET /tests-teacher
